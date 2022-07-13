@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Copyright 2022 by Isac Pasianotto
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%   NOTE IMPORTANTI   %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%	Alcuni aspetti da sapere per poter usare il presente template: 
+%	
+%	1. Ricordarsi di editare le proprietà del pdf (autore, titolo) nel file otherResources/allPackages.sty
+%	2. La compilazione, a causa dell'uso del paccheetto \usepackage{frontespizio} deve avvenire in due fasi: 
+%			a.   pdflatex/latex/xelatex/...   main.tex
+%			b.   pdflatex/latex/xelatex/...   main-frn.tex
+%			c.   pdflatex/latex/xelatex/...   main.tex        (per unire il frontespizio al resto del documento)
+%	3. Il file "main-frn.tex" è generato in automatico e salvo casi molto eccezzionali, non andrebbe mai modificato. Lavorare su 
+%      "otherResources/frontespizio.tex" invece. 	
+%	4.  Solamente quando il frontespizio ha raggiunto il suo aspetto definitivo, si può evitare la procedura 
+%		descritta al punto 2, aggiungere ai parametri del pacchetto frontespizio caricato in "otherResources/allPackages" il 
+%		flag 'nowrite'.
+%	5.  Per sistemi unix-like lo script runAll, richiamabile col comando ./runAll.sh dovrebbe fare tutto in automatico. Altrimenti 
+%       fare attenzione a come si è impostato l'editor di LaTeX in uso. 
+%       Per es. controllare che sia selezionato BibTex anzichè Biber etc etc
+
+
+\documentclass[openany]{report}	%cambio font-size con: [12pt, openany]{book}
+
+% Tutti i pacchetti sono caricati in un file esterno: 
+\usepackage{otherResources/allPackages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CARICAMENTO VARI CAPITOLI TESI %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	% Frontespizio
+	\input{otherResources/frontespizio}	
+	\pagenumbering{roman}
+	% Dedica e/o frase in prima di copertina
+	 \input{otherResources/frase}
+	\myemptypage %Deve essere eseguita anche se commentata
+	% Indice: 
+	\newpage
+	\tableofcontents
+	% Introduzione
+	\pagenumbering{arabic}
+	\input{capitoli/introduzione/introduzione.tex}
+	\thispagestyle{empty} % Tolgo il titolo sbagliato in alto a dx su l'introduzione (compariva "indice")
+	% Capitolo 1: Titolo capitolo 1
+	\input{capitoli/capitolo1/capitolo1.tex}
+	% Capitolo 2: Titolo capitolo 2
+	\input{capitoli/capitolo2/capitolo2.tex}
+	% Capitolo 3: Titolo capitolo 3
+	\input{capitoli/capitolo3/capitolo3.tex}
+	% Appendici
+    	\input{capitoli/appendici/appendice1.tex}
+	% ...	
+	% Bibliogragia
+	\input{otherResources/noCiteBibliografia.tex}
+	%Valutare se stamparla tutta in un colpo oppure utilizzare le keyword e stamparla divisa in sezioni
+	\printbibliography[title={Riferimenti bibliografici e sitografia}]
+	% Ringraziamenti 
+    \input{otherResources/ringraziamenti.tex}
+\end{document}
+	

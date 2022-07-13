@@ -1,0 +1,117 @@
+% Pacchetti per poter scrivere in italiano
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% Pacchetto per i link e relativi settaggi
+		% Ricorarsi di mettere in nero la versione che va in stampa
+\usepackage[hidelinks, colorlinks=true]{hyperref}
+\hypersetup{linkcolor=blue}
+\hypersetup{anchorcolor=black}
+\hypersetup{citecolor=black}
+\hypersetup{filecolor=black}
+\hypersetup{menucolor=black}
+\hypersetup{runcolor=black}
+\hypersetup{urlcolor=blue}
+\hypersetup{pdfauthor={Nome Cognome}}
+\hypersetup{pdftitle={Titolo del pdf}}
+\hypersetup{pdfsubject={Tesi di laurea triennale}}
+
+% Pacchetti da adeguare alle richieste dell'uni: 
+% \usepackage{geometry}
+% \geometry{a4paper,top=3cm,bottom=3cm,left=3.5cm,right=3.5cm}
+
+% Se servissero delle pagine in orizzontale: 
+\usepackage{lscape}
+
+% Pacchetti per tabelle e figure
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+% Pacchetti per formule e simboli matematici: 
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts} %per usare \mathbb
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{physics} % per poter inserire i vettori
+\usepackage{interval} % per gli intervalli tipo [a, b[
+
+% pacchetti per l'uso di colori: 
+\usepackage{color}
+\usepackage{colortbl}
+
+% Pacchetto per la bibliografia
+
+\usepackage[backend=bibtex,
+style=numeric,   %vedi la docs oppure pag 76 di https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf
+sorting=anyvt    %vedi https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX  e pag 48. di https://ctan.mirrors.hoobly.com/macros/latex/contrib/biblatex/doc/biblatex.pdf
+]{biblatex}
+\addbibresource{otherResources/bibliografia.bib}
+
+% Non mi ricordo in che occasione lo ho aggiunto, ma nel dubbio lo tengo che non possa servire
+\usepackage{scrextend}
+
+%   OPZIONALE --> Settaggio delle label per gli oggetti di itemize
+\usepackage{enumitem}
+%\renewcommand{\labelitemi}{--}
+%\renewcommand{\labelitemii}{$\circ$}
+%\renewcommand{\labelitemiii}{+}
+%\renewcommand{\labelitemiv}{$\bullet$}
+
+% Pacchetto per poter inserire le appendici
+\usepackage[titletoc]{appendix}
+
+% Pacchetto necessario per utilizzzare il frontespizio
+% note: il pacchetto ha un funzionamento particolare:  si genera un file main-frn.tex contenente i comandi necessari per generare il file del frontespizo.
+% Per ottenere il documento compilato correttamente è necessario dare la seguente serie di comandi: 
+%
+%	pdflatex/latex/xelatex   main.tex
+%	pdflatex/latex/xelatex   main-frn.tex
+%	pdflatex/latex/xelatex   main.tex
+%
+% Non è necessario ricompilare ogni volta il file main-frn.tex, solo se viene modificato il file frontespizio.tex
+\usepackage[swapnames]{frontespizio}
+
+
+% Comando ad-hoc lasciare pagine vuote non numerate:
+\newcommand\myemptypage{
+	\null
+	\thispagestyle{empty}
+	\addtocounter{page}{-1}
+	\newpage
+}
+
+% Comando per mostrare nella table of content solamente chapter e sections (no subsections o inferiori)
+\setcounter{tocdepth}{1}
+
+% Regolazione impaginazione --> liberi di modificare coerentemente con il proprio gusto estetico
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+% Metto i capitoli in alto in lowercase così si leggono meglio i nomi dei metodi
+\fancyhead[lo]{\slshape\nouppercase{\rightmark}}
+\fancyhead[re]{\slshape\nouppercase{\leftmark}}
+\fancyhead[ro,le]{\thepage}
+
+% Definisco un comando per poter andare a capo in automatico quando ho parole di \texttt{} troppo lunghe
+% senza rompere i margini 
+\newcommand\lword[1]{\leavevmode\nobreak\hskip0pt plus\linewidth\penalty50\hskip0pt plus-\linewidth\nobreak{#1}}
+% fonte: https://tex.stackexchange.com/questions/366119/how-to-for-latex-automatically-put-long-word-in-new-lines
+
+
+%Pacchetto che serve per poter inserire i codici:
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SOLO SE SI USA XeLaTeX %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Setto il font del documento con uno scelto tra quelli installati in locale
+%\usepackage{fontspec}
+%\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+%\setmainfont{Brandon Text} 
+%\setmainfont{Avenir LT Pro}
+%\setmainfont{Oxygen}
